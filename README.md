@@ -1,6 +1,6 @@
 <div align="center">
 
-## 💻 Dotfiles for my Arch Linux + bspwm setup used on my laptop.
+## 🉐 PIXEL TRAIN
 
 ![](assets/animated.gif)
 
