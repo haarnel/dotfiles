@@ -1,0 +1,25 @@
+#!/usr/bin/python
+import json
+import os
+from subprocess import check_output
+
+FILE = f"/home/{os.environ['USER']}/.config/Code/User/globalStorage/alefragnani.project-manager/projects.json"
+ICONS = {"python": "", "javascript": "", "c": "", "css": "", "sql": ""}
+
+
+with open(FILE, "r") as f:
+    projects = json.load(f)
+
+output = ""
+d = {}
+for prj in reversed(projects):
+    prj_name, folder = prj["name"], prj["rootPath"]
+    prj_icon = ICONS.get(folder.split("/")[5].lower(), "")
+    output += f"{prj_icon} {prj_name} | {folder}\n"
+
+command = f"printf '{output.rstrip()}' | rofi -dmenu"
+try:
+    choice = check_output(command, shell=True).decode().split("|")[-1].strip()
+    os.system(f'code "{choice}"')
+except:
+    pass

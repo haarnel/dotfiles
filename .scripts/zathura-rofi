@@ -1,0 +1,45 @@
+#!/usr/bin/python
+import os
+import sys
+from subprocess import check_output
+
+cache_file = os.path.join(os.environ.get("XDG_CACHE_HOME"), "zathura_books")
+if not os.path.exists(cache_file):
+    os.mknod(cache_file)
+
+path_to_file = None
+files = set()
+if len(sys.argv) == 1:
+    with open(cache_file) as f_obj:
+        data = f_obj.readlines()
+        if data:
+            output = ""
+            for idx, elem in enumerate(reversed(data), 1):
+                files.add(elem.split("|")[-1].strip())
+                output += f"{idx}. {elem}"
+
+            command = f"echo -e '{output.rstrip()}' | rofi -dmenu"
+            try:
+                output = check_output(command, shell=True).decode()
+            except:
+                sys.exit(0)
+            result = output.split("|")[-1].strip()
+            if result and result in files:  # messy input
+                path_to_file = result
+else:
+    pdf_file = sys.argv[1]
+    path_to_file = os.path.join(os.path.abspath("."), pdf_file)
+    file_name = os.path.split(path_to_file)[-1]
+    with open(cache_file) as f:
+        files = {f.strip() for f in f.readlines()}
+    string = f"{file_name} | {path_to_file}".strip()
+    if string not in files:
+        with open(cache_file, "a+") as f:
+            f.write(string + "\n")
+
+
+if path_to_file:
+    if not os.path.exists(path_to_file):
+        os.system(f'notify-send "File {path_to_file} not found"')
+    else:
+        os.system(f"zathura --fork '{path_to_file}'")

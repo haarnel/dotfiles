@@ -1,0 +1,13 @@
+#!/bin/bash
+sudo powertop --auto-tune && \
+sudo disable_turbo && \
+xbacklight -set 1 && \
+sudo tlp start 
+sudo systemctl stop NetworkManager-dispatcher.service && \
+sudo systemctl stop NetworkManager.service && \
+sudo systemctl stop systemd-resolved.service && \
+sudo systemctl stop wpa_supplicant.service && \
+sudo modprobe -r iwlmvm && \
+sudo modprobe -r iwlwifi && \
+killall polybar && \
+sudo ip link set enp3s0 down

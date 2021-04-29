@@ -1,0 +1,7 @@
+#!/bin/sh
+xrandr --output eDP1 --primary --mode 1920x1080 --rotate normal --output HDMI1 --mode 1920x1080 --rotate normal --right-of eDP1
+xsetwacom set "Wacom One by Wacom S Pen stylus" MapToOutput HDMI1
+xsetwacom set "Wacom One by Wacom S Pen stylus" Rotate half
+# Openboard : fix
+xsetwacom set "Wacom One by Wacom S Pen stylus" Button 2 "key +shift ctrl e"
+xsetwacom set "Wacom One by Wacom S Pen stylus" Button 3 "key +shift ctrl p"

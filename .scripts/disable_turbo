@@ -1,0 +1,10 @@
+#!/usr/bin/python
+
+with open("/sys/devices/system/cpu/intel_pstate/no_turbo", "w+") as f:
+    state = int(f.read().strip())
+    if not state:
+        print("Turbo Boost: disabled")
+        f.write("1")
+    else:
+        print("Turbo Boost: enabled")
+        f.write("0")

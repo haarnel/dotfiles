@@ -1,0 +1,65 @@
+#!/usr/bin/python
+import os
+import signal
+import sys
+from subprocess import run
+
+icon = ""
+KILL_MESSAGE = 'notify-send "{} windows has been killed. \nIt is clean now :)"'
+
+
+def get_all_windows():
+    output = (
+        run("wmctrl -l -p", capture_output=True, shell=True).stdout.decode().strip()
+    )
+    found = {}
+    if len(output) > 2:
+        for window in output.split("\n"):
+            parts = window.split()
+            win_id, desktop_id, process_id = parts[:3]
+            wm_str = " ".join(p for p in parts[4:]).replace("'", "")
+            found[win_id] = [desktop_id, process_id, wm_str]
+
+    return found
+
+
+def kill_all(windows):
+    i = 0
+    for values in windows.values():
+        os.kill(int(values[1]), signal.SIGTERM)
+        i += 1
+    os.system(KILL_MESSAGE.format(i))
+
+
+def get_choice(windows):
+    choices = ""
+    for k, v in windows.items():
+        choices += f"{icon}  {k} - {v[2].lower()}\n"
+    try:
+        command = f"echo '{choices.rstrip()}' | rofi -dmenu -p 'window' "
+        choice = run(command, shell=True, capture_output=True).stdout.decode().strip()
+    except:
+        return False
+
+    if choice == "killall":
+        kill_all(windows)
+
+    if not choice:
+        sys.exit(0)
+
+    win_id = choice.split()[1]
+    return win_id, windows[win_id]
+
+
+def switch_and_focus(win_id, info):
+    os.system(f"wmctrl -i -a {win_id}")
+
+
+if __name__ == "__main__":
+    windows = get_all_windows()
+    if not windows:
+        os.system('notify-send "No opened windows found :("')
+        sys.exit(0)
+
+    win_id, info = get_choice(windows)
+    switch_and_focus(win_id, info)
