@@ -158,8 +158,8 @@ type = internal/backlight
 card = intel_backlight
 enable-scroll = false
 format-prefix = "LGT"
-label = 80%
-; label = %percentage%%
+; label = 80%
+label = %percentage%%
 
 [module/date]
 inherit = module/basemodule
