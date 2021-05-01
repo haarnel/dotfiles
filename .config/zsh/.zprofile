@@ -5,7 +5,7 @@ export GOPATH=$HOME/.local/go
 export GOBIN=$HOME/.local/bin
 
 export WM="bspwm"
-export BROWSER="brave"
+export BROWSER="firefox"
 export TERMINAL="alacritty"
 export EDITOR="nvim"
 export VISUAL="nvim"
