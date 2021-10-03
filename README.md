@@ -1,6 +1,6 @@
 <div align="center">
 
-## 💜 Light Anima 💜
+## 💜 Light Anima 💜<br><br>
 
 ![](assets/screen.png)
 
