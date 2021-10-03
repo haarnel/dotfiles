@@ -1,6 +1,6 @@
 <div align="center">
 
-## 💜 Pastel Bubble
+## 💜 Anima
 
 ![](assets/screen.png)
 
