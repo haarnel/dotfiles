@@ -3,29 +3,37 @@ screenchange-reload = true
 
 [colors]
 background = #80000000
-format-prefix-bg = #EFB8CC
+format-prefix-bg = #B7B9EB
 format-prefix-fg = #000000
+label-foreground = #000000
+label-background = #B7A2E8
+
+;[colors]
+;background = #80000000
+;format-prefix-bg = ${xrdb:color2:#000}
+;format-prefix-fg = ${xrdb:color0:#fff}
+;label-foreground = ${xrdb:color0:#fff}
+;label-background = ${xrdb:color3:#000}
 
 
 ## ==== BASEMODULE ====
 [module/basemodule]
 interval = 1
-format-prefix-font = 2
+format-prefix-font = 3
 format = <label>
 format-prefix-foreground = ${colors.format-prefix-fg}
 format-prefix-background = ${colors.format-prefix-bg}
-format-overline = #ffffff
-format-underline = #ffffff
+format-overline = #000000
+format-underline = #000000
 format-prefix-padding = 1
 label-font = 3
 label-padding = 1
-label-foreground = #ffffff
-label-background = #3F495B
+label-background = ${colors.label-background}
 
 ## ==== MODULES ====
 
 [bar/main]
-monitor = HDMI1
+monitor = HDMI2
 monitor-fallback = eDP1
 width = 100%
 offset-x = 0%
@@ -36,23 +44,85 @@ height = 35
 bottom = true
 radius = 0
 fixed-center = true
-background = #ffffff
+background = #000000
 foreground = #000000
 line-size = 5
 border-top-size = 3
-border-color = #3F495B
-
+border-top-color = ${colors.format-prefix-bg}
+border-bottom-color = #000000
+border-bottom-size = 3
 wm-restack = bspwm
 module-margin-left = 1
 
-font-0 = "mononoki Nerd Font:pixelsize=12;0"
-font-1 = "mononoki Nerd Font:size=11;1"
-font-2 = "mononoki Nerd Font:size=10;2"
-font-3 = "mononoki Nerd Font:size=14;3"
+font-0 = "mononoki Nerd Font:size=12:style=Regular;2"
+font-1 = "mononoki Nerd Font:size=11:style=Regular;2"
+; or 
+; font-2 = "mononoki Nerd Font:size=11:style=Regular;2"
+font-2 = "mononoki Nerd Font:size=10:style=Regular;3"
+font-3 = "mononoki Nerd Font:size=14:style=Regular;2"
+font-4 = "mononoki Nerd Font:size=14:style=Regular;2"
 
-modules-left = bitcoin ethereum cpu_clock gmail newsboat checkupdates trash
-modules-center = mpd
-modules-right = cpu memory pulseaudio filesystem backlight battery date
+; modules-left = bitcoin ethereum cpu_clock gmail newsboat checkupdates trash
+; modules-center = mpd
+; modules-right = cpu memory pulseaudio filesystem backlight battery date
+
+; mpd_repeat_button
+modules-left = menu mpd_prev_button mpd_pp_button mpd_next_button mpd_song mpd_time
+modules-right = memory filesystem pulseaudio backlight battery date
+modules-center = 
+
+
+[module/xkeyboard]
+type = internal/xkeyboard
+
+; List of indicators to ignore
+;blacklist-0 = caps lock num lock
+;blacklist-1 = scroll lock
+
+label-layout-icon-font = 
+label-layout = %icon%
+label-layout-padding = 1
+label-layout-background = #bc99ed
+label-layout-foreground = #000
+layout-icon-0 = ru;RU
+layout-icon-1 = us;US
+format = <label-layout>
+format-prefix = "LNG"
+format-prefix-font = 2
+format-prefix-foreground = ${colors.format-prefix-fg}
+format-prefix-background = ${colors.format-prefix-bg}
+format-overline = #000000
+format-underline = #000000
+format-prefix-padding = 1
+
+[module/bspwm]
+type = internal/bspwm
+pin-workspaces = false
+enable-click = true
+fuzzy-match = true
+enable-scroll = false
+format-overline = #000000
+format-underline = #000000
+label-focused-background = ${colors.format-prefix-bg}
+label-occupied-background = ${colors.format-prefix-bg}
+label-urgent-background = ${colors.format-prefix-bg}
+label-empty-background = ${colors.format-prefix-bg}
+label-focused-font = 5
+label-occupied-font = 5
+label-urgent-font = 5
+label-empty-font = 5
+label-focused = "  "
+label-focused-foreground = #000000
+label-focused-padding = 0
+label-occupied = "  "
+label-occupied-foreground = #000000
+label-occupied-padding = 0
+label-urgent = "  "
+label-urgent-foreground = #F00
+label-urgent-padding = 0
+label-empty = "  "
+label-empty-foreground = #000000
+label-empty-padding = 0
 
 [module/ping]
 inherit = module/basemodule
@@ -67,7 +137,7 @@ label = %output:6%
 inherit = module/basemodule
 type = internal/memory
 format-prefix = "MEM"
-label = %percentage_used%%
+label = %percentage_free%%
 
 
 [module/cpu]
@@ -116,15 +186,15 @@ inherit = module/basemodule
 type = custom/script
 exec = ~/.config/polybar/scripts/checkupdates.sh
 interval = 120
-format-prefix = "PKG"
+format-prefix = 
 label = "%output%"
 
 [module/docker]
 inherit = module/basemodule
 type = custom/script
 exec = docker ps -q | wc -l
-format-prefix-foreground =  #CE2029
-format-prefix = 
+format-prefix-foreground =  #000000
+format-prefix = 
 label = "%output%"
 
 [module/newsboat]
@@ -132,7 +202,7 @@ inherit = module/basemodule
 type = custom/script
 exec = newsboat -x reload; newsboat -x print-unread | awk '{ print $1 }'
 interval = 1200
-format-prefix = "RSS"
+format-prefix = ""
 label = "%output%"
 
 
@@ -158,8 +228,8 @@ type = internal/backlight
 card = intel_backlight
 enable-scroll = false
 format-prefix = "LGT"
-; label = 80%
-label = %percentage%%
+label = 73%
+;label = %percentage%%
 
 [module/date]
 inherit = module/basemodule
@@ -177,42 +247,112 @@ format-prefix-foreground = #CE2029
 format-prefix = 
 label = "%temperature-c%"
 
-[module/mpd]
+[module/mpd_pp_button]
 type = internal/mpd
 interval = 1
-label-offline = " MPD IS OFFLINE "
+label-offline = " 契 "
 label-offline-font = 3
-label-offline-background = #3F495B
-label-offline-foreground = #ffffff
-label-song-font = 3
-label-time = %elapsed% - %total%
-label-time-font = 3
-label-time-background = #CE2029
-label-time-padding = 1
-label-song = " %artist% - %title:0:30:...% "
-label-song-background = #3F495B
-label-song-foreground = #ffffff
-format-online = <toggle><label-song>
-format-online-overline = #ffffff
-format-online-underline = #ffffff
+label-offline-background = ${colors.label-background}
+label-offline-foreground = ${colors.label-foreground}
 icon-play-font = 2
-; 契 
-icon-play = PLAY
-icon-play-padding = 1
-icon-play-background = #EFB8CC
+icon-play = " 契 "
+icon-play-background = #ffffff
 icon-pause-font = 2
-icon-pause = PAUSE
-icon-pause-padding = 1
-icon-pause-background = #EFB8CC
-icon-repeat-font = 2
-icon-repeat = 凌
-icon-repeat-padding-left = 1
-icon-repeat-padding-right = 0
-icon-repeat-background = #CE2029
-icon-single = 凌
+icon-pause = "  "
+icon-pause-background = ${colors.format-prefix-bg}
 
-format-offline = <toggle><label-offline>
-format-stopped = <toggle><label-offline>
+format-online = <toggle>
+format-online-overline = #000000
+format-online-underline = #000000
+
+[module/mpd_prev_button]
+type = internal/mpd
+interval = 1
+icon-prev-font = 2
+icon-prev = " 玲 "
+icon-prev-background = ${colors.format-prefix-bg}
+format-online = " "<icon-prev>
+format-online-overline = #000000
+format-online-underline = #000000
+format-offline = <icon-prev>
+format-offline-overline = #000000
+format-offline-underline = #000000
+
+[module/mpd_next_button]
+type = internal/mpd
+interval = 1
+; icon-padding = 1
+icon-next-padding = 1
+icon-next-font = 2
+icon-next = "怜"
+icon-next-background = ${colors.format-prefix-bg}
+format-online = <icon-next>
+format-online-overline = #000000
+format-online-underline = #000000
+format-offline = <icon-next>
+format-offline-overline = #000000
+format-offline-underline = #000000
+
+
+[module/mpd_repeat_button]
+type = internal/mpd
+interval = 1
+label-offline = " 凌 "
+label-offline-font = 3
+label-offline-background = ${colors.label-background}
+label-offline-foreground = ${colors.label-foreground}
+
+icon-single-padding = 1
+icon-single-font = 2
+icon-single = 凌
+icon-single-background = ${colors.format-prefix-bg}
+; icon-single-background = ${colors.format-prefix-bg}
+
+toggle-off-background = ${colors.format-prefix-bg}
+toggle-on-background = ${colors.format-prefix-bg}
+toggle-on-foreground = ${colors.format-prefix-fg}
+toggle-off-foreground = #ffffff
+
+format-online = <icon-single>
+format-online-overline = #000000
+format-online-underline = #000000
+format-offline = <icon-single>
+format-offline-overline = #000000
+format-offline-underline = #000000
+
+[module/mpd_song]
+type = internal/mpd
+interval = 1
+label-offline = "   MPD IS OFFLINE "
+label-offline-font = 3
+label-offline-background = ${colors.label-background}
+label-offline-foreground = ${colors.label-foreground}
+label-song-font = 3
+label-song = "   %artist% - %title:0:12:...% "
+label-song-background = ${colors.format-prefix-bg}
+label-song-foreground = #000000
+format-online = <label-song>
+format-online-overline = #000000
+format-online-underline = #000000
+format-offline = <label-offline>
+format-stopped = <label-offline>
+
+[module/mpd_time]
+type = internal/mpd
+interval = 1
+label-offline = " ﮫ "
+label-offline-font = 3
+label-offline-background = ${colors.label-background}
+label-offline-foreground = ${colors.label-foreground}
+label-time = "%elapsed% / %total%"
+label-time-font = 3
+label-time-background = ${colors.label-background}
+label-time-padding = 1
+format-online = <label-time>
+format-online-overline = #000000
+format-online-underline = #000000
+format-offline = <label-offline>
+format-stopped = <label-offline>
 
 [module/filesystem]
 type = internal/fs
@@ -222,14 +362,14 @@ format-mounted-prefix = "HDD"
 label-mounted-padding = 1
 label-mounted-font = 3
 label-mounted = "%percentage_free%%"
-format-mounted-prefix-font = 2
+format-mounted-prefix-font = 3
 format-mounted-prefix-padding = 1
-format-mounted-prefix-background = #EFB8CC
+format-mounted-prefix-background = ${colors.format-prefix-bg}
 format-mounted-prefix-foreground = #000000
-label-mounted-background = #3F495B
-label-mounted-foreground = #ffffff
-format-mounted-overline = #ffffff
-format-mounted-underline = #ffffff 
+label-mounted-background = ${colors.label-background}
+label-mounted-foreground = ${colors.label-foreground}
+format-mounted-overline = #000000
+format-mounted-underline = #000000 
 
 [module/bitcoin]
 type = custom/script
@@ -238,6 +378,17 @@ interval = 60
 exec = ~/.config/polybar/scripts/crypto.py BTC USD 24
 format-prefix = "BTC"
 click-left = xdg-open "https://coinmarketcap.com/currencies/bitcoin/" &
+
+[module/menu]
+type = custom/text
+content-overline = #000000
+content-underline = #000000
+content-font = 2
+; 
+content = "  "
+content-background = ${colors.format-prefix-bg}
+content-foreground = #000000
+click-left = rofi -show drun &
 
 [module/ethereum]
 type = custom/script
@@ -262,7 +413,7 @@ format-connected-prefix-padding = 1
 format-connected-prefix-overline = #ffffff
 format-connected-prefix-underline = #ffffff
 format-connected-prefix-foreground = #000000
-format-connected-prefix-background = #EFB8CC
+format-connected-prefix-background = ${colors.format-prefix-bg}
 label-connected-overline = #ffffff
 label-connected-underline = #ffffff
 label-connected-padding = 1
@@ -282,7 +433,7 @@ format-connected-prefix-padding = 1
 format-connected-prefix-overline = #ffffff
 format-connected-prefix-underline = #ffffff
 format-connected-prefix-foreground = #000000
-format-connected-prefix-background = #EFB8CC
+format-connected-prefix-background = ${colors.format-prefix-bg}
 label-connected-overline = #ffffff
 label-connected-underline = #ffffff
 label-connected-padding = 1

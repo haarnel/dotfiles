@@ -7,7 +7,7 @@
 ; mode = normal
 
 # Accepts only non-negative values.
-framerate = 120
+; framerate = 60
 
 # 'autosens' will attempt to decrease sensitivity if the bars peak. 1 = on, 0 = off
 # new as of 0.6.0 autosens of low values (dynamic range)
@@ -15,15 +15,15 @@ framerate = 120
 ; autosens = 1
 ; overshoot = 20
 
-# Manual sensitivity in %. Autosens must be turned off for this to take effect.
+# Manual sensitivity in %. If autosens is enabled, this will only be the initial value.
 # 200 means double height. Accepts only non-negative values.
-; sensitivity = 100
+; sensitivity = 200
 
 # The number of bars (0-200). 0 sets it to auto (fill up console).
 # Bars' width and space between bars in number of characters.
-; bars = 20
-bar_width = 2
-bar_spacing = 1
+; bars = 0
+; bar_width = 2
+; bar_spacing = 1
 
 
 # Lower and higher cutoff frequencies for lowest and highest bars
@@ -53,8 +53,8 @@ bar_spacing = 1
 # For alsa 'source' will be the capture device.
 # For fifo 'source' will be the path to fifo-file.
 # For shmem 'source' will be /squeezelite-AA:BB:CC:DD:EE:FF where 'AA:BB:CC:DD:EE:FF' will be squeezelite's MAC address
-method = pulse
-source = auto
+; method = pulse
+; source = auto
 
 ; method = alsa
 ; source = hw:Loopback,1
@@ -80,7 +80,7 @@ source = auto
 # 'raw' is an 8 or 16 bit (configurable via the 'bit_format' option) data
 # stream of the bar heights that can be used to send to other applications.
 # 'raw' defaults to 200 bars, which can be adjusted in the 'bars' option above.
-method = ncurses
+; method = ncurses
 
 # Visual channels. Can be 'stereo' or 'mono'.
 # 'stereo' mirrors both channels with low frequencies in center.
@@ -115,22 +115,22 @@ method = ncurses
 # ncurses output method and a terminal that can change color definitions such as Gnome-terminal or rxvt.
 # if supported, ncurses mode will be forced on if user defined colors are used.
 # default is to keep current terminal color
-; background = '#ffffff'
-foreground = '#DAD4E0'
+; background = 
+; foreground = 
 
 # Gradient mode, only hex defined colors (and thereby ncurses mode) are supported,
 # background must also be defined in hex  or remain commented out. 1 = on, 0 = off.
 # You can define as many as 8 different colors. They range from bottom to top of screen
-; gradient = 1
-; gradient_count = 8
-; gradient_color_1 = '#59cc33'
-; gradient_color_2 = '#80cc33'
-; gradient_color_3 = '#a6cc33'
-; gradient_color_4 = '#cccc33'
-; gradient_color_5 = '#cca633'
-; gradient_color_6 = '#cc8033'
-; gradient_color_7 = '#cc5933'
-; gradient_color_8 = '#cc3333'
+gradient = 1 
+gradient_count = 8
+gradient_color_1 = "#9fa2a5"
+gradient_color_2 = "#e4e8ec"
+gradient_color_3 = "#c9d1f1"
+gradient_color_4 = "#b7baec"
+gradient_color_5 = "#a7c9e9"
+gradient_color_6 = "#b7a3e8"
+gradient_color_7 = "#93ade4"
+gradient_color_8 = "#7070db"
 
 
 
@@ -138,15 +138,15 @@ foreground = '#DAD4E0'
 
 # Percentage value for integral smoothing. Takes values from 0 - 100.
 # Higher values means smoother, but less precise. 0 to disable.
-integral = 85
+integral = 60
 
 # Disables or enables the so-called "Monstercat smoothing" with or without "waves". Set to 0 to disable.
-; monstercat = 1
-; waves = 100
+; monstercat = 0
+; waves = 0
 
 # Set gravity percentage for "drop off". Higher values means bars will drop faster.
 # Accepts only non-negative values. 50 means half gravity, 200 means double. Set to 0 to disable "drop off".
-gravity = 150
+; gravity = 100
 
 
 # In bar height, bars that would have been lower that this will not be drawn.
@@ -154,8 +154,12 @@ gravity = 150
 
 
 [eq]
-1=2
-2=2
-3=1
-4=1
-5=0.5
+
+# This one is tricky. You can have as much keys as you want.
+# Remember to uncomment more then one key! More keys = more precision.
+# Look at readme.md on github for further explanations and examples.
+; 1 = 1 # bass
+; 2 = 1
+; 3 = 1 # midtone
+; 4 = 1
+; 5 = 1 # treble

@@ -276,7 +276,7 @@ song_columns_list_format = (2)[green]{N: } (20)[]{a: } (50)[white]{t|f: } (20)[c
 ## Note: Custom command that will be executed each time song changes. Useful for
 ## notifications etc.
 ##
-execute_on_song_change = notify-send "Now Playing ♫" "$(mpc current)" &
+execute_on_song_change = current_song &
 #
 ##
 ## Note: Custom command that will be executed each time player state
@@ -369,7 +369,7 @@ follow_now_playing_lyrics = yes
 #
 #generate_win32_compatible_filenames = yes
 #
-#allow_for_physical_item_deletion = no
+allow_for_physical_item_deletion = yes
 #
 ##
 ## Note: If you set this variable, ncmpcpp will try to get info from last.fm in

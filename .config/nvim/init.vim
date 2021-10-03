@@ -20,7 +20,6 @@ set noshowmode
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'jiangmiao/auto-pairs'
-Plug 'psf/black', { 'branch': 'stable' }
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'haishanh/night-owl.vim'
 Plug 'bluz71/vim-nightfly-guicolors'
@@ -28,7 +27,9 @@ Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'psliwka/vim-smoothie'
-Plug 'fisadev/vim-isort'
+Plug 'lewis6991/moonlight.vim'
+Plug 'kjssad/quantum.vim'
+Plug 'beikome/cosme.vim'
 call plug#end()
 
 
@@ -36,17 +37,18 @@ if (has("termguicolors"))
  set termguicolors
 endif
 
-colorscheme nightfly
-let g:lightline = { 'colorscheme': 'ayu_dark' }
+colorscheme 1989
+let g:lightline = { 'colorscheme': 'cosme' }
 let g:nightflyTransparent = 1
 let g:nightflyItalics = 0
 highlight Normal guibg=none
 highlight NonText guibg=none
-
+highlight LineNr guibg=none
+highlight NonText guifg=black
 autocmd BufWritePre *.py execute ':Black'
 autocmd BufWritePre *.py execute ':Isort'
 autocmd FileType html setlocal tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType css setlocal tabstop=2 shiftwidth=2 soft
+autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 

@@ -1,47 +1,50 @@
-set notification-error-bg       "#282828" # bg
-set notification-error-fg       "#fb4934" # bright:red
-set notification-warning-bg     "#282828" # bg
-set notification-warning-fg     "#fabd2f" # bright:yellow
-set notification-bg             "#282828" # bg
-set notification-fg             "#b8bb26" # bright:green
+set notification-error-bg       "#B7A2E8" # Red
+set notification-error-fg       "#f8f8f2" # Foreground
+set notification-warning-bg     "#ffb86c" # Orange
+set notification-warning-fg     "#44475a" # Selection
+set notification-bg             "#282a36" # Background
+set notification-fg             "#f8f8f2" # Foreground
 
-set completion-bg               "#504945" # bg2
-set completion-fg               "#ebdbb2" # fg
-set completion-group-bg         "#3c3836" # bg1
-set completion-group-fg         "#928374" # gray
-set completion-highlight-bg     "#83a598" # bright:blue
-set completion-highlight-fg     "#504945" # bg2
+set completion-bg               "#282a36" # Background
+set completion-fg               "#B7A2E8" # Comment
+set completion-group-bg         "#282a36" # Background
+set completion-group-fg         "#B7A2E8" # Comment
+set completion-highlight-bg     "#B7A2E8" # Selection
+set completion-highlight-fg     "#f8f8f2" # Foreground
 
-# Define the color in index mode
-set index-bg                    "#504945" # bg2
-set index-fg                    "#ebdbb2" # fg
-set index-active-bg             "#83a598" # bright:blue
-set index-active-fg             "#504945" # bg2
+set index-bg                    "#000000" # Background
+set index-fg                    "#f8f8f2" # Foreground
+set index-active-bg             "#C9D1F1" # Current Line
+set index-active-fg             "#f8f8f2" # Foreground
 
-set inputbar-bg                 "#b16286" # bg
-set inputbar-fg                 "#000000" # fg
+set inputbar-bg                 "#282a36" # Background
+set inputbar-fg                 "#f8f8f2" # Foreground
+set statusbar-bg                "#C9D1F1" # Background
+set statusbar-fg                "#000000" # Foreground
 
-set statusbar-bg                "#EFB8CC" # bg2
-set statusbar-fg                "#000000" # fg
+set highlight-color             "#C9D1F1" # Orange
+set highlight-active-color      "#B7A2E8" # Pink
 
-set highlight-color             "#fabd2f" # bright:yellow
-set highlight-active-color      "#fe8019" # bright:orange
+set default-bg                  "#000000" # Background
+set default-fg                  "#f8f8f2" # Foreground
 
-set default-bg                  "#000000" # bg
-set default-fg                  "#B4B9B9" # fg
 set render-loading              true
-set render-loading-bg           "#000000" # bg
-set render-loading-fg           "#B4B9B9" # fg
+set render-loading-fg           "#000000" # Background
+set render-loading-bg           "#f8f8f2" # Foreground
 
-# Recolor book content's color
-set recolor-lightcolor          "#000000" # bg
-set recolor-darkcolor           "#B4B9B9" # fg
+#
+# Recolor mode settings
+#
 
+set recolor-lightcolor          "#000000" # Background
+set recolor-darkcolor           "#f8f8f2" # Foreground
 
+set window-title-basename true
 set statusbar-v-padding  15
 set statusbar-h-padding  75
 set selection-clipboard clipboard
 set font "mononoki Nerd Font 11"
+set adjust-open width
 set recolor                     true
 set pages-per-row 1
 set statusbar-basename          true

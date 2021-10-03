@@ -1,0 +1,106 @@
+#
+# wm independent hotkeys
+#
+
+# terminal emulator
+super + Return
+	$TERMINAL
+
+super + @space
+        $LAUNCHER -show drun
+
+super + b
+        zathura-rofi
+
+super + shift + b
+	$BROWSER
+
+# program launcher
+super + r
+	$LAUNCHER -show run
+
+super + e
+        $LAUNCHER -show emoji -modi emoji -matching normal
+
+super + w
+        wins_manager
+
+super + v
+        vscode-projects
+
+alt + @space
+        clipmenu
+
+super + shift + m
+        $TERMINAL -e ncmpcpp
+
+super + shift + n
+	$TERMINAL -e cava
+
+super + shift + {plus,minus}
+    pactl set-sink-volume 0 {+,-}8%
+
+super + {minus,equal}
+    mpc seek {-,+}5%
+
+super + alt + {comma, period}
+    mpc {prev,next} && current_song
+
+super + shift + r
+     mpc seek 0 && current_song
+
+super + alt + p
+     mpc toggle
+
+super + shift + z
+     betterlockscreen -l blur
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+#
+# berry hotkeys
+#
+
+super + ctrl + {h, j, k, l}
+    berryc cardinal_focus {2, 3, 1, 0}
+
+super + {h, j, k, l}
+    berryc window_move {-50 0, 0 50, 0 -50, 50 0}
+
+super + shift +  {h, j, k, l}
+    berryc window_resize {-50 0, 0 50, 0 -50, 50 0}
+
+super + {1-9}
+    berryc switch_workspace {0-9}
+
+super + shift + {1-9}
+    berryc send_to_workspace {0-9}
+
+super + m
+    berryc window_monocle
+
+super + f
+    berryc fullscreen
+
+super +  p
+    berryc snap_right
+
+super + o 
+    berryc snap_left
+
+super + n
+    berryc toggle_decorations
+
+super + Tab
+    berryc cycle_focus
+
+super + q
+    berryc window_close
+
+super + c
+    berryc window_center
+
+~button1
+    berryc pointer_focus
