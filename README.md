@@ -1,6 +1,6 @@
 <div align="center">
 
-## 💜 Light Anima 💜<br><br>
+## 💜 Arcana 💜<br><br>
 
 ![](assets/screen.png)
 
