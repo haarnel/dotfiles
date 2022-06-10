@@ -1,10 +1,9 @@
 <div align="center">
 
-## 🉐 PIXEL TRAIN
+## 🉐 BSPWM DAILY SETUP
 
-![](assets/animated.gif)
+![](assets/screen.jpg)
 
-### ⏫ [60 FPS VERSION](assets/animated.mkv)
 
 ## 📦 Main Packages
 | Name                                                | Description                                                  |
