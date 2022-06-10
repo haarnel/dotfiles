@@ -1,0 +1,17 @@
+#!/bin/sh
+
+picom --config $XDG_CONFIG_HOME/picom/picom.conf --experimental-backends -b 
+xrdb $XDG_CONFIG_HOME/Xresources &
+xset r rate 450 50 &
+xsetroot -cursor_name left_ptr &
+unclutter &
+clipmenud &
+fehbg &
+flameshot &
+dunst &
+mpd &
+mpDris2 &
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape' &
+monitor.sh &
+workers.py &
+exec $WM

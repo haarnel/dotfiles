@@ -16,4 +16,6 @@ icons = {
 
 
 percent = psutil.sensors_battery().percent
-print(int(percent) - 5)
+# to = (percent + 9) // 10 * 10
+# print(f"{icons[to]}")
+print(int(percent))

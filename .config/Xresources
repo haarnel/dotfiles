@@ -1,27 +1,45 @@
-*.foreground:   #C0C0C0
-*.background:   #000000
-! black/dark-gray
-*.color0:       #101010
-*.color8:       #454545
-! red/orange
-*.color1:       #EFA6A2
-*.color9:       #E0AF85
-! green/aquamarine
-*.color2:       #80C990
-*.color10:      #5ACCAF
-! amber/yellow
-*.color3:       #A69460
-*.color11:      #C8C874
-! blue/violet
-*.color4:       #A3B8EF
-*.color12:      #CCACED
-! magenta/rose
-*.color5:       #E6A3DC
-*.color13:      #F2A1C2
-! cyan/azure
-*.color6:       #50CACD
-*.color14:      #74C3E4
-! gray/white
-*.color7:       #808080
-*.color15:      #C0C0C0
+! hard contrast: *background: #1d2021
+*background: #282828
+! soft contrast: *background: #32302f
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #282828
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #fb4934
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #b8bb26
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #8ec07c
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2
 
+
+! Xclock colors.
+XClock*foreground: #e4e8ec
+XClock*background: #19191e
+XClock*majorColor:  rgba:e4/e8/ec/ff
+XClock*minorColor:  rgba:e4/e8/ec/ff
+XClock*hourColor:   rgba:e4/e8/ec/ff
+XClock*minuteColor: rgba:e4/e8/ec/ff
+XClock*secondColor: rgba:e4/e8/ec/ff
+
+! Set depth to make transparency work.
+URxvt*depth: 32
+
+Sxiv*background: #111111
+Sxiv*foreground: #817f7f
+Sxiv.font: CaskaydiaCove Nerd Font:size=11

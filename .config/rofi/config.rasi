@@ -1,8 +1,1 @@
-configuration {
-	modi: "window,run,drun";
-	theme: "theme.rasi";
-	font: "mononoki Nerd Font 13";
-	icon-theme: "~/.local/share/icons/McMojave-circle-grey";
-	show-icons: true;
-        matching: "fuzzy";
-}
+@theme "themes/main"

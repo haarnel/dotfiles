@@ -19,7 +19,7 @@ ncmpcpp_directory = ~/.config/ncmpcpp
 ## MPD clients (eg. ncmpc) also use that location.
 ##
 #
-lyrics_directory = "~/.local/share/lyrics"
+lyrics_directory = "~/.config/ncmpcpp/lyrics"
 #
 ##### connection settings #####
 #
@@ -50,7 +50,7 @@ mpd_music_dir = "~/Music"
 ## }
 ##
 #
-visualizer_fifo_path = /tmp/mpd.fifo
+# visualizer_fifo_path = /tmp/mpd.fifo
 visualizer_output_name = "Visualizer feed"
 #
 ##
@@ -72,7 +72,7 @@ visualizer_in_stereo = yes
 ## that sane values start with >=10.
 ##
 #
-visualizer_sync_interval = 10
+# visualizer_sync_interval = 10
 #
 ##
 ## Note: To enable spectrum frequency visualization you need to compile ncmpcpp
@@ -187,7 +187,7 @@ visualizer_look = ●▮
 song_list_format =   $6%a $8~ $3%t  $R $7%l
 #
 #song_status_format = {{%a{ "%b"{ (%y)}} - }{%t}}|{%f}
-song_status_format = 
+song_status_format =
 #
 #song_library_format = {%n - }{%t}|{%f}
 #
@@ -195,7 +195,7 @@ song_status_format =
 alternative_header_first_line_format = ncmpcpp
 #
 #alternative_header_second_line_format = {{$4$b%a$/b$9}{ - $7%b$9}{ ($4%y$9)}}|{%D}
-alternative_header_second_line_format = $b$6%a $8- $5%b %t
+alternative_header_second_line_format = $b$6%a $8- $5%t
 #
 #current_item_prefix = $(yellow)$r
 #
@@ -276,7 +276,7 @@ song_columns_list_format = (2)[green]{N: } (20)[]{a: } (50)[white]{t|f: } (20)[c
 ## Note: Custom command that will be executed each time song changes. Useful for
 ## notifications etc.
 ##
-execute_on_song_change = notify-send "Now Playing ♫" "$(mpc current)" &
+execute_on_song_change = current_song &
 #
 ##
 ## Note: Custom command that will be executed each time player state
@@ -359,7 +359,7 @@ statusbar_visibility = no
 #
 #lines_scrolled = 2
 #
-#lyrics_fetchers = lyricwiki, azlyrics, genius, sing365, lyricsmania, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, internet
+# lyrics_fetchers = lyricwiki, azlyrics, sing365, lyricsmania, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, internet
 #
 follow_now_playing_lyrics = yes
 #
@@ -369,7 +369,7 @@ follow_now_playing_lyrics = yes
 #
 #generate_win32_compatible_filenames = yes
 #
-#allow_for_physical_item_deletion = no
+allow_for_physical_item_deletion = yes
 #
 ##
 ## Note: If you set this variable, ncmpcpp will try to get info from last.fm in
@@ -460,7 +460,7 @@ follow_now_playing_lyrics = yes
 #
 #media_library_sort_by_mtime = no
 #
-#enable_window_title = yes
+enable_window_title = yes
 #
 ##
 ## Note: You can choose default search mode for search engine. Available modes
@@ -548,6 +548,6 @@ alternative_ui_separator_color = white
 #
 #active_window_border = red
 #
-visualizer_fps = 60
+visualizer_fps = 30
 visualizer_spectrum_smooth_look = yes
 visualizer_spectrum_gain = 20

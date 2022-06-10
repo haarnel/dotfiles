@@ -1,8 +1,9 @@
 [global]
     monitor = 0
     follow = keyboard
-    # geometry = "350x400-850+420"
-    geometry = "350x400-10+15"
+    width = 320
+    height = 350
+    offset = 15x20
     indicate_hidden = no
     shrink = no
     transparency = 0
@@ -10,15 +11,15 @@
     separator_height = 8
     padding = 10
     horizontal_padding = 10
-    frame_width = 3
-    frame_color = "#3F3B3B"
+    frame_width = 0
+    frame_color = "#817F7F"
     separator_color = "#05050500"
     sort = no
     idle_threshold = 0
 
     ### Text ###
 
-    font = mononoki Nerd Font 9
+    font = Caskaydia Cove Nerd Font 9
     line_height = 12
     markup = full
     format = "%s \n\n%b"
@@ -26,7 +27,7 @@
     show_age_threshold = -1
     word_wrap = no
     ellipsize = middle
-    ignore_newline = yes
+    ignore_newline = no
     stack_duplicates = false
     hide_duplicate_count = true
     show_indicators = no
@@ -42,28 +43,22 @@
     class = Dunst
     startup_notification = false
 
-[experimental]
-    per_monitor_dpi = 96
-
 [urgency_low]
-    background = "#ffffff"
-    foreground = "#30302F"
+    background = "#000000"
+    foreground = "#ffffff"
     timeout = 3
-    icon = ~/.config/notice.png
 
 [urgency_normal]
-    background = "#ffffff"
-    foreground = "#30302F"
+    background = "#000000"
+    foreground = "#ffffff"
     timeout = 3
-    icon = ~/.config/notice.png
 
 [urgency_critical]
-    background = "#ffffff"
-    foreground = "#30302F"
+    background = "#000000"
+    foreground = "#ffffff"
     timeout = 3
-    icon = ~/.config/notice.png
 
 [repeater]
-    background = "#ffffff"
-    foreground = "#30302F"
+    background = "#000000"
+    foreground = "#ffffff"
     timeout = 4

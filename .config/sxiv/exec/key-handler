@@ -1,0 +1,28 @@
+#!/bin/sh
+while read file
+do
+        case "$1" in
+        "w") feh --bg-fill "$file" & ;;
+        "m")
+		[ -z "$destdir" ] && destdir="$(sed "s/\s.*#.*$//;/^\s*$/d" ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs | awk '{print $2}' | dmenu -l 20 -i -p "Move file(s) to where?" | sed "s|~|$HOME|g")"
+		[ ! -d "$destdir" ] && notify-send "$destdir is not a directory, cancelled." && exit
+		mv "$file" "$destdir" && notify-send -i "$(readlink -f "$file")" "$file moved to $destdir." &
+		;;
+	"r")
+        convert -rotate $(rofi-ask "Degree: ") "$file" "$file" ;;
+	"R")
+		convert -rotate -90 "$file" "$file" ;;
+	"f")
+		convert -flop "$file" "$file" ;;
+	"y")
+		readlink -f "$file" | tr -d '\n' | xclip -selection clipboard &&
+			notify-send "📁 Image path copied to clipboard" & ;;
+	"d")
+        [ "$(rofi-ask "Confirm: ")" = "+" ] && rm "$file" && notify-send "$file deleted." ;;
+	"g")	ifinstalled gimp && setsid -f gimp "$file" ;;
+	"i")	notify-send "File information" "$(mediainfo "$file")" ;;
+    "c")    xclip -selection clipboard -t image/png -i "$file" && notify-send "🎴 Image copied to clipboard" ;;
+    "u")    ffsend upload --download-limit 1 --expiry-time $(rofi-ask "Expire Time: ") --copy "$file" --quiet && notify-send "🖼️  Image uploaded\n Link copied to your clipboard" & ;;
+        esac
+done
+
